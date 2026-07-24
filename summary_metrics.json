@@ -1,0 +1,15 @@
+{
+  "overall_late_rate_pct": 8.11,
+  "avg_review_score_on_time": 4.29,
+  "avg_review_score_late": 2.57,
+  "pct_1_2_star_on_time": 9.23,
+  "pct_1_2_star_late": 54.03,
+  "repeat_rate_on_time_pct": 3.04,
+  "repeat_rate_late_pct": 2.52,
+  "repeat_rate_gap_pvalue": 0.0111,
+  "avg_incremental_revenue_per_repeat_customer": 163.15,
+  "estimated_lost_repeat_customers": 39.4,
+  "estimated_revenue_at_risk_usd": 6428.0,
+  "same_state_late_pct": 6.06,
+  "different_state_late_pct": 9.27
+}
