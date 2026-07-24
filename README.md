@@ -4,7 +4,7 @@
 
 > Built to answer a real business question end-to-end — SQL → analysis → dashboard → recommendation — on the Olist Brazilian E-Commerce dataset (~96,000 delivered orders, Sep 2016–Aug 2018).
 
-![Dashboard](assets/dashboard.png)
+![Dashboard](dashboard.png)
 
 ## Key numbers
 
@@ -24,24 +24,18 @@ Late deliveries — 8.1% of Olist's ~96,000 delivered orders — are a geography
 
 The dashboard above breaks the problem into three views: late-delivery rate by state, the satisfaction gap (on-time vs late), and repeat-purchase rate by delivery outcome. *An interactive Tableau Public version is on the way.*
 
-## Repo structure
-
-```
-sql/                    Standalone, commented SQL — one file per analysis step
-notebook/analysis.ipynb Runs the full pipeline end-to-end, produces data_exports/
-data_exports/           Clean, aggregated CSVs + summary_metrics.json (feeds the dashboard)
-assets/                 Dashboard image(s) used in this README
-data/                   Raw Olist CSVs (not committed — see Reproducing below)
-```
+## The analysis (SQL)
 
 | File | What it answers |
 |---|---|
-| `sql/01_late_delivery_rate.sql` | What share of orders are late, at baseline? |
-| `sql/02_causes_geography.sql` | Does customer location / shipping route predict lateness? |
-| `sql/03_causes_category.sql` | Control check: does product category predict lateness? (It doesn't.) |
-| `sql/04_review_score_impact.sql` | How much does a late delivery move the review score? |
-| `sql/05_repeat_purchase_cohort.sql` | Does a late first order change whether a customer comes back? |
-| `sql/06_revenue_at_risk.sql` | Converts the repeat-rate gap into a dollar estimate |
+| `01_late_delivery_rate.sql` | What share of orders are late, at baseline? |
+| `02_causes_geography.sql` | Does customer location / shipping route predict lateness? |
+| `03_causes_category.sql` | Control check: does product category predict lateness? (It doesn't.) |
+| `04_review_score_impact.sql` | How much does a late delivery move the review score? |
+| `05_repeat_purchase_cohort.sql` | Does a late first order change whether a customer comes back? |
+| `06_revenue_at_risk.sql` | Converts the repeat-rate gap into a dollar estimate |
+
+`analysis.ipynb` runs the full pipeline end-to-end (loads the raw CSVs into DuckDB, runs each step, and writes the aggregated `data_exports` that feed the dashboard).
 
 ## Methodology notes (the parts a reviewer will check first)
 
@@ -52,9 +46,9 @@ data/                   Raw Olist CSVs (not committed — see Reproducing below)
 
 ## Reproducing
 
-1. Download the [Olist Brazilian E-Commerce dataset](https://www.kaggle.com/olistbr/brazilian-ecommerce) (or the mirror at [olist/work-at-olist-data](https://github.com/olist/work-at-olist-data)) and place the 9 CSVs in \`data/\`.
+1. Download the [Olist Brazilian E-Commerce dataset](https://www.kaggle.com/olistbr/brazilian-ecommerce) (or the mirror at [olist/work-at-olist-data](https://github.com/olist/work-at-olist-data)) and place the 9 CSVs in a \`data/\` folder.
 2. \`pip install -r requirements.txt\`
-3. Run \`notebook/analysis.ipynb\` top to bottom. It loads the CSVs into DuckDB, runs each analysis step, and writes \`data_exports/\`.
+3. Run \`analysis.ipynb\` top to bottom. It loads the CSVs into DuckDB, runs each analysis step, and writes the aggregated exports.
 
 ## Stack
 
