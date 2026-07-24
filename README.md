@@ -4,7 +4,7 @@
 
 > Built to answer a real business question end-to-end — SQL → analysis → dashboard → recommendation — on the Olist Brazilian E-Commerce dataset (~96,000 delivered orders, Sep 2016–Aug 2018).
 
-![Dashboard](dashboard.png)
+![Dashboard](Dashboardfinal.png)
 
 ## Key numbers
 
