@@ -5,7 +5,6 @@
 > Built to answer a real business question end-to-end — SQL → analysis → dashboard → recommendation — on the Olist Brazilian E-Commerce dataset (~96,000 delivered orders, Sep 2016–Aug 2018).
 
 ![Dashboard](assets/dashboard.png)
-<!-- Export a full-resolution PNG of your Tableau dashboard and save it as assets/dashboard.png -->
 
 ## Key numbers
 
@@ -23,8 +22,7 @@ Late deliveries — 8.1% of Olist's ~96,000 delivered orders — are a geography
 
 ## Dashboard
 
-**[View the interactive dashboard on Tableau Public](PASTE_YOUR_TABLEAU_PUBLIC_LINK_HERE)**
-<!-- Publish to Tableau Public, then paste the public URL above. -->
+The dashboard above breaks the problem into three views: late-delivery rate by state, the satisfaction gap (on-time vs late), and repeat-purchase rate by delivery outcome. *An interactive Tableau Public version is on the way.*
 
 ## Repo structure
 
@@ -60,7 +58,7 @@ data/                   Raw Olist CSVs (not committed — see Reproducing below)
 
 ## Stack
 
-DuckDB (SQL analysis) · Python/Pandas (pipeline + stats) · Tableau Public (dashboard)
+DuckDB (SQL analysis) · Python/Pandas (pipeline + stats) · Tableau (dashboard)
 
 ---
 
