@@ -22,7 +22,7 @@ Late deliveries — 8.1% of Olist's ~96,000 delivered orders — are a geography
 
 ## Dashboard
 
-The dashboard above breaks the problem into three views: late-delivery rate by state, the satisfaction gap (on-time vs late), and repeat-purchase rate by delivery outcome. *An interactive Tableau Public version is on the way.*
+The dashboard above breaks the problem into three views: late-delivery rate by state, the satisfaction gap (on-time vs late), and repeat-purchase rate by delivery outcome.
 
 ## The analysis (SQL)
 
@@ -35,20 +35,20 @@ The dashboard above breaks the problem into three views: late-delivery rate by s
 | `05_repeat_purchase_cohort.sql` | Does a late first order change whether a customer comes back? |
 | `06_revenue_at_risk.sql` | Converts the repeat-rate gap into a dollar estimate |
 
-`analysis.ipynb` runs the full pipeline end-to-end (loads the raw CSVs into DuckDB, runs each step, and writes the aggregated `data_exports` that feed the dashboard).
+`analysis.ipynb` runs the full pipeline end-to-end (loads the raw CSVs into DuckDB, runs each step, and writes the aggregated CSV exports and `summary_metrics.json` that feed the dashboard).
 
 ## Methodology notes (the parts a reviewer will check first)
 
 - **`customer_unique_id`, not `customer_id`.** Olist assigns a new `customer_id` to every order; only `customer_unique_id` identifies the same person across orders. Joining on `customer_id` would make every customer look like a one-time buyer by construction — the most common mistake in public Olist analyses. Baseline repeat-purchase rate here is ~3%, matching other published analyses of this dataset.
-- **"Late" is defined as** \`order_delivered_customer_date > order_estimated_delivery_date\`, scoped to \`order_status = 'delivered'\` only.
-- **Route (same-state vs. different-state)** uses each order's first item (\`order_item_id = 1\`) as the representative seller, since ~1.3% of orders span multiple sellers and would otherwise be ambiguous.
+- **"Late" is defined as** `order_delivered_customer_date > order_estimated_delivery_date`, scoped to `order_status = 'delivered'` only.
+- **Route (same-state vs. different-state)** uses each order's first item (`order_item_id = 1`) as the representative seller, since ~1.3% of orders span multiple sellers and would otherwise be ambiguous.
 - **The revenue-at-risk figure is a lower bound**, by design — it only counts the direct effect on the same customer's future spend, not reputational spillover to other customers.
 
 ## Reproducing
 
-1. Download the [Olist Brazilian E-Commerce dataset](https://www.kaggle.com/olistbr/brazilian-ecommerce) (or the mirror at [olist/work-at-olist-data](https://github.com/olist/work-at-olist-data)) and place the 9 CSVs in a \`data/\` folder.
-2. \`pip install -r requirements.txt\`
-3. Run \`analysis.ipynb\` top to bottom. It loads the CSVs into DuckDB, runs each analysis step, and writes the aggregated exports.
+1. Download the [Olist Brazilian E-Commerce dataset](https://www.kaggle.com/olistbr/brazilian-ecommerce) (or the mirror at [olist/work-at-olist-data](https://github.com/olist/work-at-olist-data)) and place the 9 CSVs in a `data/` folder.
+2. `pip install -r requirements.txt`
+3. Run `analysis.ipynb` top to bottom. It loads the CSVs into DuckDB, runs each analysis step, and writes the aggregated exports.
 
 ## Stack
 
